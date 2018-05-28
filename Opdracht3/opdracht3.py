@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import math
-import pyglfw.pyglfw as glfw
+import glfw
 import sys
 
 from OpenGL.GL import *
@@ -177,15 +177,14 @@ if __name__ == '__main__':
         sys.exit(1)
 
     # Create window, exit on fail
-    window = glfw.Window(WINDOW_W * PX_SIZE, WINDOW_H * PX_SIZE, 'Opdracht 3')
+    window = glfw.create_window(WINDOW_W * PX_SIZE, WINDOW_H * PX_SIZE, 'Opdracht 3', None, None)
     if not window:
         print('Failed to create GLFW window')
         glfw.terminate()
         sys.exit(2)
 
     # Tell OpenGL to use this window and show it
-    window.make_current()
-    window.show()
+    glfw.make_context_current(window)
 
     # Set space where OpenGL can draw to
     glOrtho(0, WINDOW_W * PX_SIZE, WINDOW_H * PX_SIZE, 0, -1, 1)
@@ -193,7 +192,7 @@ if __name__ == '__main__':
     # Current angle for rotating line
     a = 0
 
-    while not window.should_close:
+    while not glfw.window_should_close(window):
         # Poll for mouse/key/other events
         glfw.poll_events()
 
@@ -214,7 +213,7 @@ if __name__ == '__main__':
         draw_grid()
 
         # Swap buffer
-        window.swap_buffers()
+        glfw.swap_buffers(window)
 
         # Update angle
         a = (a + 1 % 360)
