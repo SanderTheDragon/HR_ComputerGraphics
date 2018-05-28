@@ -15,7 +15,7 @@ PX_SIZE = 10
 WINDOW_W = 64
 WINDOW_H = 32
 # Smallest dimension, for the rotating line function
-WINDOW_C = WINDOW_H if WINDOW_H < WINDOW_W else WINDOW_H
+WINDOW_C = WINDOW_H if WINDOW_H < WINDOW_W else WINDOW_W
 
 
 
